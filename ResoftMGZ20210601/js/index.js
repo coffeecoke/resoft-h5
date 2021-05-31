@@ -38,4 +38,4 @@ $(function () {
 title='6月 宜孩子气—《鑫声》第二十一期'; // 分享标题
 desc='六一快乐呀~'; // 分享描述
 link = 'http://weixin.chinaresoft.com/resoftwechat/pages/ResoftMGZ20210601/pages/page1.html';
-imgUrl='http://weixin.chinaresoft.com/resoftwechat/pages/ResoftMGZ20210601/imgs/share.png'; // // 分享图标
+imgUrl='http://weixin.chinaresoft.com/resoftwechat/pages/ResoftMGZ20210601/share.png'; // // 分享图标
