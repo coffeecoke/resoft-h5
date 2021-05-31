@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+
+/** 清除内外边距 **/
+a,address,b,big,blockquote,button,body,center,cite,code,dd,del,div,dl,dt,em,fieldset,font,form,h1,h2,h3,h4,h5,h6,html,i,iframe,img,ins,input,label,legend,li,ol,p,pre,small,span,strong,u,ul,var,th,td,textarea,br{
+    margin: 0;
+    padding: 0;
+
+}
+/** 重新定义HTML5标签元素 **/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{
+    display:block
+}
+/** 定义按钮 **/
+button,html input[type=button],input[type=submit]{
+    -webkit-apperance:button;cursor:pointer
+}
+button[disabled],html input[disabled]{
+    cursor:default
+}
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+
+/** 去边框 **/
+fieldset, img{border:0;}
+
+/** 将斜体扶正 **/
+address, cite, dfn, em, var ,i { font-style: normal; }
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/** 设置默认字体 **/
+html ,body{width:100%; height:100%;overflow:auto;}
+body,
+button, input, select, textarea,i /* for ie */ {
+    font:14px/1.6 "microsoft yahei", tahoma,\5b8b\4f53 ,Arial,Verdana ,sans-serif;
+}
+
+/** 重置文本格式元素 **/
+a { text-decoration: none; }
+/*a:hover { text-decoration: underline; }*/
+
+sup { vertical-align: text-top; } /* 重置，减少对行高的影响 */
+sub { vertical-align: text-bottom; }
+
+/* 使得表单元素在 ie 下能继承字体大小 */
+button,input,select,textarea {
+    font-size:100%
+}
+/** 重置表格元素 **/
+table {
+    border-collapse:collapse;
+    border-spacing:0 !important;
+}
+input{ vertical-align:middle; }
+
+/** 重置表单元素 **/
+legend { color: #000; } /* for ie6 */
+
+/** 清除浮动 **/
+.clear,.clr{
+    display:block;
+    overflow:hidden;
+    clear:both;
+    height:0;
+    line-height:0;
+    font-size:0
+}
+.clearfix:after,
+.clearfix:before{
+    content: '';
+    display: table;
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix{
+    *zoom: 1;
+}
+/* 去掉链接虚线框 */
+a{outline:none;text-decoration:none}
+a:active {outline:none; blr:expression(this.onFocus=this.blur());}
+
+/** 定义常用类名 **/
+.fl{float:left}.fr{float:right}
+.al{text-align:left}.ac{text-align:center}
+.ar{text-align:right}.hide{display:none}
+
+a{color:#333; cursor:pointer;}
+

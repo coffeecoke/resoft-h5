@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=375, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>鑫声第二十一期</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/animate.min.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/fengmian.css">
+  <link rel="stylesheet" href="../css/menu.css">
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<style>
+  .ts {
+
+  }
+  .content {
+
+  }
+  .footer {
+
+  }
+  .line {
+    width:60px;
+    height:2px;
+    background:#d5c17c;
+    margin:40px auto;
+  }
+</style>
+<body>
+  <div class="fm"></div>
+  <div class="menu-container"></div>
+  <div class="wrapper">
+    <div class="header" style="padding:10px;position: fixed;top:0;left:0;right:0;z-index:20">
+      <img src="../imgs/menu/menu-bars.png" alt="" style="width:84px;float:left;" class="pop-menu" />
+      <img class="imgs" src="../imgs/menu/next.png" onclick="window.location.href='page2.html'" alt=""
+        style="width:60px;float:right;" />
+    </div>
+    <div class="banner" style="height:auto;">
+      <!-- <div class="text-container">
+        <img class="w100 animated bounceInLeft" src="../imgs/page1/banner.png" alt="" style="" >
+      </div> -->
+      <img src="../imgs/page1/banner.jpg" alt="" class="w100">
+
+    </div>
+    <img src="../imgs/page1/img1.jpg" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img2.png" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img3.jpg" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img4.png" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img5.jpg" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img6.png" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img7.png" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img8.png" alt="" class="w100">
+    <div class="line"></div>
+    <img src="../imgs/page1/img9.png" alt="" class="w100">
+  </div>
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+  <script src="http://weixin.chinaresoft.com/resoftwechat/pages/common/js/share.js"></script>
+  <script src="https://wow.techbrood.com/libs/gsap/TweenMax.min.js"></script>
+  <script src="../js/index.js"></script>
+  <script>
+    var clock = true;
+    var index = 0;
+    var first = true;
+    // $(".bless").each(function (index, item) {
+    //   var currAudio = $(this).find('.audio')[0];
+    //   var bg = $(this).data('bg');
+    //   currAudio.wave = new AudioWave({
+    //     id: 'wave' + (index + 1),
+    //     barColor: bg
+    //   })
+    // })
+    $(".fm").on('click touchend', function () {
+      var _this = this;
+
+      setTimeout(function () {
+        $(_this).fadeOut()
+        // if (first) {
+        //   audioAutoPlay('audio1');
+        //   first = false
+        // }
+      }, 300);
+    });
+    if (window.location.hash == "#showFM") {
+      $('.fm').hide();
+      audioAutoPlay('audio1');
+      //audioAutoPlay('audio13');
+    }
+
+    function audioAutoPlay(id) {
+      var audio = document.getElementById(id);
+      console.log(audio)
+      var play = function () {
+        audio.play();
+        audio.wave.waveStart();
+        $(audio).parent().addClass("active");
+        if (window.location.hash == "#showFM") {
+          document.removeEventListener("touchstart", play, false);
+        }
+        // document.removeEventListener("touchstart", play, false);
+      };
+      play()
+      if (window.location.hash == "#showFM") {
+        document.addEventListener("WeixinJSBridgeReady", function () {
+          play();
+        }, false);
+        document.addEventListener('YixinJSBridgeReady', function () {
+          play();
+        }, false);
+        document.addEventListener("touchstart", play, false);
+      }
+
+      audio.addEventListener('ended', function () {
+        $(this).parent().removeClass("active");
+        // audio.wave.waveStop();
+        index++;
+        if (clock) {
+          audios($($('.bless')[index]).find('audio')[0]);
+        }
+      }, false);
+    }
+
+    $(".bless").click(function () {
+      // $(this).toggleClass("active");
+      var audio = $(this).find('audio');
+      clock = false;
+      index = 0;
+      audios(audio[0], 'click');
+    })
+
+    function audios(el) {
+
+      if (index > 12) {
+        return;
+      }
+      if (el.paused) {
+        $(".bless").find('audio').each(function () {
+          $(this)[0].pause();
+          $(this).parent().removeClass("active");
+          $(this)[0].wave.waveStop();
+        })
+        console.log(el)
+        $(el).parent().addClass("active")
+        el.currentTime = 0;
+        var audioAll = $(el).data("src");
+        $(el).attr("src", audioAll);
+        el.wave.waveStart();
+        el.play();
+      } else {
+        $(el).parent().removeClass("active")
+        el.wave.waveStop();
+        el.pause();
+      }
+      el.addEventListener('ended', function () {
+        $(this).parent().removeClass("active");
+        this.wave.waveStop();
+        index++;
+        if (clock) {
+          audios($($('.bless')[index]).find('audio')[0]);
+        }
+      }, false);
+    }
+  </script>
+</body>
+
+</html>
